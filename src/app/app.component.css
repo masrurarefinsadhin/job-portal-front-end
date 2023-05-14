@@ -1,0 +1,116 @@
+/*
+!* Reset default styles *!
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+!* Set default font *!
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+!* Set background color *!
+body {
+  background-color: #f0f0f0;
+}
+
+!* Set default text color *!
+body {
+  color: #333;
+}
+
+!* Set default link styles *!
+a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+!* Set default heading styles *!
+h1, h2, h3, h4, h5, h6 {
+  margin: 20px 0;
+  font-weight: bold;
+}
+
+h1 {
+  font-size: 36px;
+}
+
+h2 {
+  font-size: 30px;
+}
+
+h3 {
+  font-size: 24px;
+}
+
+h4 {
+  font-size: 20px;
+}
+
+h5 {
+  font-size: 18px;
+}
+
+h6 {
+  font-size: 16px;
+}
+
+!* Set default paragraph styles *!
+p {
+  margin: 10px 0;
+  line-height: 1.5;
+}
+
+!* Set default list styles *!
+ul, ol {
+  margin: 10px 0;
+}
+
+li {
+  margin: 5px 0;
+  list-style: disc;
+}
+
+!* Set default image styles *!
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+!* Set default form styles *!
+input, textarea {
+  padding: 10px;
+  border-radius: 5px;
+  border: none;
+  background-color: #f7f7f7;
+  margin-bottom: 10px;
+}
+
+button {
+  padding: 10px 20px;
+  border-radius: 5px;
+  border: none;
+  background-color: #007bff;
+  color: #fff;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+!* Set default container styles *!
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+*/
