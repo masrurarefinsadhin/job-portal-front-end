@@ -6,6 +6,7 @@ import { CandidateUserComponent } from './candidate-user/candidate-user.componen
 import { NavbarComponent } from './navbar/navbar.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { JobDetailComponent } from './candidate-user/job-detail/job-detail.component';
+import { CreateResumeComponent } from './candidate-user/create-resume/create-resume.component';
 
 @NgModule({
   declarations: [
@@ -13,6 +14,7 @@ import { JobDetailComponent } from './candidate-user/job-detail/job-detail.compo
     CandidateUserComponent,
     NavbarComponent,
     JobDetailComponent,
+    CreateResumeComponent,
   ],
   imports: [
     BrowserModule,
