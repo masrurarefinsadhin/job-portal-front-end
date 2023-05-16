@@ -1,4 +1,4 @@
-import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import {FormArray, FormBuilder, FormControl, FormGroup} from '@angular/forms';
 import {CandidateUserService} from '../../candidate-user/candidate-user.service';
 import { Component, OnInit } from '@angular/core';
 import {SkillType} from '../../model/skill-type.model';
@@ -13,26 +13,28 @@ import {NationalityType} from '../../model/nationality.model';
 import {BloodGroup} from '../../model/blood-group.model';
 import {JobType} from '../../model/job-type.model';
 import {CompanyUserUserService} from '../company-user.service';
+import {DegreeType} from '../../model/degree-type.model';
 @Component({
   selector: 'app-post-job',
   templateUrl: './post-job.component.html',
   styleUrls: ['./post-job.component.css']
 })
 export class PostJobComponent implements OnInit {
-  skillTypeValues:SkillType[] =[];
-  jobTypeValues:JobType[] =[];
-  jobLevelValues:JobLevel[] =[];
-  salaryTypeValues:SalaryType[] =[];
-  lunchFacilityTypeValues:LunchFacilityType[] =[];
-  salaryReviewValues:SalaryReview[] =[];
-  workplaceValues:Workplace[] =[];
-  genderTypeValues:GenderType[] =[];
-  maritalStatusValues:MaritalStatus[] =[];
-  nationalityTypeValues:NationalityType[] =[];
-  bloodGroupValues:BloodGroup[] =[];
+  skillTypeValues: SkillType[] = [];
+  jobTypeValues: JobType[] = [];
+  jobLevelValues: JobLevel[] = [];
+  salaryTypeValues: SalaryType[] = [];
+  lunchFacilityTypeValues: LunchFacilityType[] = [];
+  salaryReviewValues: SalaryReview[] = [];
+  workplaceValues: Workplace[] = [];
+  genderTypeValues: GenderType[] = [];
+  maritalStatusValues: MaritalStatus[] = [];
+  nationalityTypeValues: NationalityType[] = [];
+  bloodGroupValues: BloodGroup[] = [];
+  degreeTypeValues: DegreeType[] = [];
 
 
-  constructor(private fb: FormBuilder,protected companyUserUserService: CompanyUserUserService) { }
+  constructor(private fb: FormBuilder, protected companyUserUserService: CompanyUserUserService) { }
   editForm = this.fb.group({
     id: [],
     jobTitle: [],
@@ -54,7 +56,11 @@ export class PostJobComponent implements OnInit {
     genderType: [],
     ageMin: [],
     ageMax: [],
-    companyUserId: []
+    companyUserId: [],
+    educationQualificationList: this.fb.array([
+      ]),
+    companyExperienceList: this.fb.array([
+    ])
   });
   ngOnInit(): void {
     this.skillTypeValues = Object.values(SkillType);
@@ -68,11 +74,11 @@ export class PostJobComponent implements OnInit {
     this.maritalStatusValues = Object.values(MaritalStatus);
     this.nationalityTypeValues = Object.values(NationalityType);
     this.bloodGroupValues = Object.values(BloodGroup);
-
+    this.degreeTypeValues = Object.values(DegreeType);
 
   }
 
-  onSubmit() {
+  onSubmit(): void {
     console.log(this.editForm.value);
     this.companyUserUserService.createJobPost(this.editForm.value).subscribe(
       (res) => {
@@ -80,5 +86,45 @@ export class PostJobComponent implements OnInit {
       }
     );
 
+    this.companyUserUserService.getResumeList().subscribe((res) => {
+      console.log(res.body);
+    });
+
   }
+  createEducationQualification(): FormGroup {
+    return this.fb.group({
+      degreeName: [],
+      degreeType: [],
+      degreeTitle: [],
+      majorSubject: []
+    });
+  }
+  createCompanyExperience(): FormGroup {
+    return this.fb.group({
+      minYearsOfExperience: [],
+      maxYearsOfExperience: [],
+      areaOfExpertise: [],
+      listOfSkill: []
+    });
+  }
+  get educationQualificationList(): FormArray {
+    return this.editForm.get('educationQualificationList') as FormArray;
+  }
+  addEducationQualification(): void {
+    this.educationQualificationList.push(this.createEducationQualification());
+  }
+  removeEducationQualification(i: number): void {
+    this.educationQualificationList.removeAt(i);
+  }
+
+  get companyExperienceList(): FormArray {
+    return this.editForm.get('companyExperienceList') as FormArray;
+  }
+  addCompanyExperience(): void {
+    this.companyExperienceList.push(this.createCompanyExperience());
+  }
+  removeCompanyExperience(i: number): void {
+    this.companyExperienceList.removeAt(i);
+  }
+
 }

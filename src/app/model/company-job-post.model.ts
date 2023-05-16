@@ -6,6 +6,7 @@ import {SalaryReview} from './salary-review.model';
 import {Workplace} from './work-place.model';
 import {GenderType} from './gender.model';
 import {SalaryType} from './salary-type.model';
+import {Moment} from 'moment';
 export interface ICompanyJobPostDto {
   id?: number;
   companyId?: number;
@@ -13,7 +14,7 @@ export interface ICompanyJobPostDto {
   vacancy?: number;
   requiredSkill?: SkillType;
   jobType?: JobType;
-  deadline?: Date;
+  deadline?: Moment;
   context?: string;
   jobResponsibility?: string;
   jobLevel?: JobLevel;
@@ -37,7 +38,7 @@ export class CompanyJobPostDto implements ICompanyJobPostDto {
     public vacancy?: number,
     public requiredSkill?: SkillType,
     public jobType?: JobType,
-    public deadline?: Date,
+    public deadline?: Moment,
     public context?: string,
     public jobResponsibility?: string,
     public jobLevel?: JobLevel,

@@ -7,6 +7,8 @@ import {SalaryType} from '../../model/salary-type.model';
 import {LunchFacilityType} from '../../model/lunch-facility.model';
 import {SalaryReview} from '../../model/salary-review.model';
 import {Workplace} from '../../model/work-place.model';
+import * as moment from 'moment';
+import {CandidateUserService} from '../candidate-user.service';
 
 @Component({
   selector: 'app-job-detail',
@@ -14,8 +16,8 @@ import {Workplace} from '../../model/work-place.model';
   styleUrls: ['../candidate-user.component.css']
 })
 export class JobDetailComponent implements OnInit {
-
-  jobPosting: ICompanyJobPostDto | undefined;
+  selectedJob = -1;
+  jobPosting: ICompanyJobPostDto | null = null ;
   monthNames: string[] = [
     'January',
     'February',
@@ -30,31 +32,14 @@ export class JobDetailComponent implements OnInit {
     'November',
     'December'
   ];
-  constructor() { }
+  constructor(protected candidateUserService: CandidateUserService) { }
 
   ngOnInit(): void {
-    this.jobPosting = {
-      id: 1,
-      companyId: 1,
-      jobTitle: 'Software Engineer',
-      vacancy: 2,
-      requiredSkill: SkillType.IT,
-      jobType: JobType.FULL_TIME,
-      deadline: new Date(),
-      context: 'This is a context',
-      jobResponsibility: 'This is a job responsibility',
-      jobLevel: JobLevel.MID_LEVEL,
-      jobLocation: 'Dhaka',
-      maxSalary: 100000,
-      minSalary: 50000,
-      salaryType: SalaryType.NEGOTIABLE,
-      lunchFacilityType: LunchFacilityType.FULLY_SUBSIDIZED,
-      salaryReview: SalaryReview.HALF_YEARLY,
-      numberOfYearlyBonus: 2,
-      workplace: Workplace.OFFICE,
-      ageMax: 30,
-      ageMin: 20,
-    };
+    console.log(this.candidateUserService.getJobId());
+    this.candidateUserService.getJobPostById(this.candidateUserService.getJobId()).subscribe((res) => {
+      this.jobPosting = res.body;
+      console.log(this.jobPosting);
+    });
   }
   salaryTypeNegotiable(salaryType: SalaryType | undefined): boolean {
     return salaryType === SalaryType.NEGOTIABLE;

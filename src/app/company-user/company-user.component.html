@@ -1,2 +1,63 @@
 <app-navbar-company></app-navbar-company>
-<p>company-user works!</p>
+<div class="container my-2">
+  <div *ngFor="let resume of listOfResume">
+
+    <div class="row">
+      <div class="col">
+        <div class="card">
+          <div class="card-header">
+            <h5 class="card-title">{{resume.fatherName}} {{resume.motherName}}</h5>
+          </div>
+
+            <ul class="list-group">
+              <li class="list-group-item">
+                <strong>Present Address:</strong>
+                {{resume.presentAddress}}
+              </li>
+              <li class="list-group-item">
+                <strong>Permanent Address:</strong>
+                {{resume.permanentAddress}}
+              </li>
+              <li class="list-group-item">
+                <strong>Date of Birth:</strong>
+                {{resume.dateOfBirth}}
+              </li>
+              <li class="list-group-item">
+                <strong>Nationality:</strong>
+                {{resume.nationalityType}}
+              </li>
+              <li class="list-group-item">
+                <strong>National ID:</strong>
+                {{resume.nationalIdNumber}}
+              </li>
+              <li class="list-group-item">
+                <strong>Religion:</strong>
+                {{resume.religionType}}
+              </li>
+              <li class="list-group-item">
+                <strong>Marital Status:</strong>
+                {{resume.maritalStatus}}
+              </li>
+              <li class="list-group-item">
+                <strong>Secondary Contact Number:</strong>
+                {{resume.secondaryContactNumber}}
+              </li>
+              <li class="list-group-item">
+                <strong>Blood Group:</strong>
+                {{resume.bloodGroup}}
+              </li>
+              <li class="list-group-item">
+                <strong>Secondary Email:</strong>
+                {{resume.secondaryEmail}}
+              </li>
+            </ul>
+
+          <div class="card-footer">
+            <button class="btn btn-primary" (click)="viewResumeDetails(resume.id)">View Details</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>

@@ -9,6 +9,8 @@ import {JobType} from '../model/job-type.model';
 import {SkillType} from '../model/skill-type.model';
 import { ActivatedRoute, Data, ParamMap, Router } from '@angular/router';
 import { CandidateUserService } from './candidate-user.service';
+import {Moment} from 'moment';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-candidate-user',
@@ -46,7 +48,7 @@ export class CandidateUserComponent implements OnInit {
         vacancy: 2,
         requiredSkill: SkillType.IT,
         jobType: JobType.FULL_TIME,
-        deadline: new Date(),
+        deadline: moment(),
         context: 'This is a context',
         jobResponsibility: 'This is a job responsibility',
         jobLevel: JobLevel.MID_LEVEL,
@@ -65,9 +67,10 @@ export class CandidateUserComponent implements OnInit {
     ];
     this.candidateUserService.getJobList().subscribe(
       (res) => {
-        if (res.body!==null){
+        console.log(res);
+        if (res.body !== null){
           this.listOfJobPostings = res.body;
-          console.log(this.listOfJobPostings)
+          console.log(this.listOfJobPostings);
         }
 
       });
@@ -79,8 +82,13 @@ export class CandidateUserComponent implements OnInit {
   salaryTypeShow(salaryType: SalaryType | undefined): boolean {
     return salaryType === SalaryType.SHOW;
   }
-  showJobDetail(id: any): void {
-    this.candidateUserService.setJobId = id;
+  showJobDetail(id: number): void {
+    this.candidateUserService.setJobId(id);
     this.router.navigate(['/candidate-user/job-detail']);
+  }
+
+  dayParse(deadline: Moment|undefined): string {
+    if (deadline === undefined) {  return '0'; }
+    return deadline.format('DD');
   }
 }

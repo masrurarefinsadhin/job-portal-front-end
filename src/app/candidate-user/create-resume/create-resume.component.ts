@@ -5,8 +5,6 @@ import {MaritalStatus} from '../../model/marital-status.model';
 import {BloodGroup} from '../../model/blood-group.model';
 import {ReligionType} from '../../model/religion.model';
 import { CandidateUserService } from '../candidate-user.service';
-import {HttpResponse,HttpClient, HttpClientModule } from '@angular/common/http';
-import {CompanyUserUserService} from '../../company-user/company-user.service';
 
 @Component({
   selector: 'app-create-resume',
@@ -15,9 +13,9 @@ import {CompanyUserUserService} from '../../company-user/company-user.service';
 })
 export class CreateResumeComponent implements OnInit {
 
-  nationalityTypeValues: NationalityType[]=[];
+  nationalityTypeValues: NationalityType[] = [];
   maritalStatusValues: MaritalStatus[] = [];
-  bloodGroupValues:BloodGroup[]=[];
+  bloodGroupValues: BloodGroup[] = [];
   religionTypeValues: ReligionType[] = [];
 
   editForm = this.fb.group({
@@ -39,7 +37,7 @@ export class CreateResumeComponent implements OnInit {
     experienceList: [null]
 });
 
-  constructor(private fb: FormBuilder,protected candidateUserService: CandidateUserService) { }
+  constructor(private fb: FormBuilder, protected candidateUserService: CandidateUserService) { }
 
   ngOnInit(): void {
     this.nationalityTypeValues = Object.values(NationalityType);
@@ -49,7 +47,7 @@ export class CreateResumeComponent implements OnInit {
 
 
   }
-  onSubmit() {
+  onSubmit(): void {
     console.log(this.editForm.value);
     this.candidateUserService.createResume(this.editForm.value).subscribe(
       (res) => {

@@ -16,8 +16,10 @@
             <div class="widget-49">
               <div class="widget-49-title-wrapper">
                 <div class="widget-49-date-primary">
-                  <span class="widget-49-date-day">{{jobPosting.deadline?.getDate()}}</span>
-                  <span class="widget-49-date-month">{{jobPosting.deadline ? monthNames[jobPosting.deadline.getMonth()] : 'Nevuarry'}}</span>
+                  <span class="widget-49-date-day">{{jobPosting.deadline}}</span>
+<!--
+                  <span class="widget-49-date-month">{{jobPosting.deadline ? monthNames[ 0] : 'Nevuarry'}}</span>
+-->
                 </div>
                 <div class="widget-49-meeting-info">
                   <span class="widget-49-pro-title">{{jobPosting.context}}</span>
@@ -45,7 +47,7 @@
 
 
 
-  <div class="row">
+  <!--<div class="row">
     <div class="col">
       <div class="card card-margin">
         <div class="card-header no-border">
@@ -75,7 +77,7 @@
         </div>
       </div>
     </div>
-  </div>
+  </div>-->
 
 
 

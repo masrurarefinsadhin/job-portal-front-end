@@ -5,21 +5,24 @@ import {ICompanyJobPostDto} from '../model/company-job-post.model';
 
 @Injectable({providedIn: 'root'})
 export class CandidateUserService {
-  protected selectedJob: any;
+  protected selectedJob = -1;
   constructor(protected http: HttpClient) {
   }
-  set setJobId(job: any) {
+  setJobId(job: number): void {
     this.selectedJob = job;
   }
-  get getJobId(): any {
+  getJobId(): number {
     return this.selectedJob;
   }
 
-  createResume(resume:any ): Observable<HttpResponse<boolean>> {
-    return this.http.post<boolean>("http://localhost:8080/common/candidate/create-resume", resume, { observe: 'response' });
+  createResume(resume: any ): Observable<HttpResponse<boolean>> {
+    return this.http.post<boolean>('http://localhost:8080/common/candidate/create-resume', resume, { observe: 'response' });
   }
   getJobList(): Observable<HttpResponse<ICompanyJobPostDto[]>> {
-    return this.http.get<ICompanyJobPostDto[]>("http://localhost:8080/common/candidate/get-job-list", { observe: 'response' });
+    return this.http.get<ICompanyJobPostDto[]>('http://localhost:8080/common/candidate/get-job-list', { observe: 'response' });
   }
 
+  getJobPostById(jobId: number): Observable<HttpResponse<ICompanyJobPostDto>> {
+    return this.http.get<ICompanyJobPostDto>('http://localhost:8080/common/candidate/get-job-post-by-id/' + jobId, { observe: 'response' });
+  }
 }
