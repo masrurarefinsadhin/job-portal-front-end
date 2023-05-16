@@ -32,8 +32,7 @@ export class CandidateUserComponent implements OnInit {
     'November',
     'December'
   ];
-  // tslint:disable-next-line:no-shadowed-variable
-  constructor( protected router: Router, protected CandidateUserService: CandidateUserService) {
+  constructor( protected router: Router, protected candidateUserService: CandidateUserService) {
 
   }
 
@@ -64,7 +63,14 @@ export class CandidateUserComponent implements OnInit {
 
       }
     ];
+    this.candidateUserService.getJobList().subscribe(
+      (res) => {
+        if (res.body!==null){
+          this.listOfJobPostings = res.body;
+          console.log(this.listOfJobPostings)
+        }
 
+      });
   }
 
   salaryTypeNegotiable(salaryType: SalaryType | undefined): boolean {
@@ -74,7 +80,7 @@ export class CandidateUserComponent implements OnInit {
     return salaryType === SalaryType.SHOW;
   }
   showJobDetail(id: any): void {
-    this.CandidateUserService.setJobId = id;
+    this.candidateUserService.setJobId = id;
     this.router.navigate(['/candidate-user/job-detail']);
   }
 }

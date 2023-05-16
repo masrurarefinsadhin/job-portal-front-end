@@ -7,8 +7,8 @@ import {Workplace} from './work-place.model';
 import {GenderType} from './gender.model';
 import {SalaryType} from './salary-type.model';
 export interface ICompanyJobPostDto {
-  id?: any;
-  companyId?: any;
+  id?: number;
+  companyId?: number;
   jobTitle?: string;
   vacancy?: number;
   requiredSkill?: SkillType;
@@ -31,8 +31,8 @@ export interface ICompanyJobPostDto {
 }
 export class CompanyJobPostDto implements ICompanyJobPostDto {
   constructor(
-    public id?: any,
-    public companyId?: any,
+    public id?: number,
+    public companyId?: number,
     public jobTitle?: string,
     public vacancy?: number,
     public requiredSkill?: SkillType,

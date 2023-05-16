@@ -1,5 +1,5 @@
-export const enum SkillType {
-  IT = 'Information Technology',
+export  enum SkillType {
+  IT = 'IT',
   MEDICAL = 'Medical',
   ENGINEERING = 'Engineering',
   ACCOUNTING = 'Accounting',

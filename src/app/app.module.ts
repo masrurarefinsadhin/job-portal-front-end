@@ -7,6 +7,12 @@ import { NavbarComponent } from './navbar/navbar.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { JobDetailComponent } from './candidate-user/job-detail/job-detail.component';
 import { CreateResumeComponent } from './candidate-user/create-resume/create-resume.component';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {HttpClient, HttpClientModule} from '@angular/common/http';
+import { CompanyUserComponent } from './company-user/company-user.component';
+import { NavbarCompanyComponent } from './navbar-company/navbar-company.component';
+import { PostJobComponent } from './company-user/post-job/post-job.component';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [
@@ -15,10 +21,17 @@ import { CreateResumeComponent } from './candidate-user/create-resume/create-res
     NavbarComponent,
     JobDetailComponent,
     CreateResumeComponent,
+    CompanyUserComponent,
+    NavbarCompanyComponent,
+    PostJobComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ReactiveFormsModule,
+    HttpClientModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

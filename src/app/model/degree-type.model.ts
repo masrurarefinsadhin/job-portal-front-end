@@ -1,4 +1,4 @@
-export const enum DegreeType {
+export  enum DegreeType {
   HIGH_SCHOOL_DIPLOMA = 'HIGH_SCHOOL_DIPLOMA',
   SSC = 'SSC',
   HSC = 'HSC',

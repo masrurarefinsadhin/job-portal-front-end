@@ -1,0 +1,120 @@
+<app-navbar-company></app-navbar-company>
+<div class="container my-3">
+  <div class="card-body">
+    <form [formGroup]="editForm" name="editForm" novalidate role="form" (ngSubmit)="onSubmit()">
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-group">
+            <label>Job Title:</label>
+            <input type="text" formControlName="jobTitle" class="form-control">
+          </div>
+          <div class="form-group">
+            <label>Vacancy:</label>
+            <input type="number" formControlName="vacancy" class="form-control">
+          </div>
+          <div class="form-group">
+            <label>Required Skill:</label>
+            <select formControlName="requiredSkill" class="form-control">
+              <option *ngFor="let skillType of skillTypeValues" [value]="skillType.toUpperCase()">{{ skillType.replace('_', ' ') }}</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Job Type:</label>
+            <select formControlName="jobType" class="form-control">
+              <option *ngFor="let jobType of jobTypeValues" [value]="jobType.toUpperCase()">{{ jobType.replace('_', ' ') }}</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Deadline:</label>
+            <input type="date" formControlName="deadline" class="form-control">
+          </div>
+          <div class="form-group">
+            <label>Context:</label>
+            <textarea formControlName="context" class="form-control"></textarea>
+          </div>
+          <div class="form-group">
+            <label>Job Responsibility:</label>
+            <textarea formControlName="jobResponsibility" class="form-control"></textarea>
+          </div>
+          <div class="form-group">
+            <label>Job Level:</label>
+            <select formControlName="jobLevel" class="form-control">
+              <option *ngFor="let jobLevel of jobLevelValues" [value]="jobLevel.toUpperCase()">{{ jobLevel.replace('_', ' ') }}</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Job Location:</label>
+            <input type="text" formControlName="jobLocation" class="form-control">
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <label>Maximum Salary:</label>
+            <input type="number" formControlName="maxSalary" class="form-control">
+          </div>
+          <div class="form-group">
+            <label>Minimum Salary:</label>
+            <input type="number" formControlName="minSalary" class="form-control">
+          </div>
+          <div class="form-group">
+            <label>Salary Type:</label>
+            <select formControlName="salaryType" class="form-control">
+              <option *ngFor="let salaryType of salaryTypeValues" [value]="salaryType.toUpperCase()">{{ salaryType.replace('_', ' ') }}</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Lunch Facility:</label>
+            <select formControlName="lunchFacilityType" class="form-control">
+              <option *ngFor="let lunchFacilityType of lunchFacilityTypeValues" [value]="lunchFacilityType.toUpperCase()">{{ lunchFacilityType.replace('_', ' ') }}</option>
+            </select>
+          </div>
+          <div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label>Salary Review:</label>
+                <select formControlName="salaryReview" class="form-control">
+                  <option *ngFor="let review of salaryReviewValues" [value]="review.toUpperCase()">{{ review.replace('_', ' ')}}</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label>Number of Yearly Bonus:</label>
+                <input type="number" formControlName="numberOfYearlyBonus" class="form-control">
+              </div>
+              <div class="form-group">
+                <label>Workplace:</label>
+                <select formControlName="workplace" class="form-control">
+                  <option *ngFor="let workplace of workplaceValues" [value]="workplace.toUpperCase()">{{ workplace.replace('_', ' ') }}</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label>Gender:</label>
+                <select formControlName="genderType" class="form-control">
+                  <option *ngFor="let gender of genderTypeValues" [value]="gender.toUpperCase()">{{ gender.replace('_', ' ') }}</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label>Age Range:</label>
+                <div class="row">
+                  <div class="col-md-6">
+                    <input type="number" formControlName="ageMin" placeholder="Minimum Age" class="form-control">
+                  </div>
+                  <div class="col-md-6">
+                    <input type="number" formControlName="ageMax" placeholder="Maximum Age" class="form-control">
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label>Company User ID:</label>
+                <input type="number" formControlName="companyUserId" class="form-control">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+        <button type="submit" class="btn btn-primary float-right">Submit</button>
+    </form>
+  </div>
+</div>
+

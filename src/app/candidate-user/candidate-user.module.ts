@@ -1,4 +1,3 @@
-import {NgModel} from '@angular/forms';
 import {NgModule} from '@angular/core';
 import {RouterModule} from '@angular/router';
 import {CandidateUserComponent} from './candidate-user.component';
