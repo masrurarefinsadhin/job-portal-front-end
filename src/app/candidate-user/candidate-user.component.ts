@@ -9,9 +9,7 @@ import {JobType} from '../model/job-type.model';
 import {SkillType} from '../model/skill-type.model';
 import { ActivatedRoute, Data, ParamMap, Router } from '@angular/router';
 import { CandidateUserService } from './candidate-user.service';
-import {Moment} from 'moment';
 import * as moment from 'moment';
-
 @Component({
   selector: 'app-candidate-user',
   templateUrl: './candidate-user.component.html',

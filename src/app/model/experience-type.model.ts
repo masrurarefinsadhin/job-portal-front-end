@@ -1,0 +1,9 @@
+export enum ExperienceType {
+  INTERN = 'INTERN',
+  FULL_TIME = 'FULL_TIME',
+  PART_TIME = 'PART_TIME',
+  RESEARCH = 'RESEARCH',
+  PROJECT = 'PROJECT',
+  PERSONAL = 'PERSONAL',
+  OTHER = 'OTHER'
+}

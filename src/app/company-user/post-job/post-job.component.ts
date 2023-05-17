@@ -58,11 +58,8 @@ export class PostJobComponent implements OnInit {
     ageMin: [],
     ageMax: [],
     companyUserId: [],
-    educationQualificationList: this.fb.array([
-
-      ]),
-    companyExperienceList: this.fb.array([])
-  });
+    educationQualificationList: this.fb.array([]),
+    companyExperienceList: this.fb.array([])});
   ngOnInit(): void {
     this.skillTypeValues = Object.values(SkillType);
     this.jobTypeValues = Object.values(JobType);

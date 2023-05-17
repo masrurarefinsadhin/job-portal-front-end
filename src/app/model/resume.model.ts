@@ -2,6 +2,8 @@ import {BloodGroup} from './blood-group.model';
 import {ReligionType} from './religion.model';
 import {MaritalStatus} from './marital-status.model';
 import {NationalityType} from './nationality.model';
+import {ICandidateEducation} from './candidate-education.model';
+import {ICandidateExperience} from './candidate-experience.model';
 
 export interface IResume {
   id?: number;
@@ -18,6 +20,8 @@ export interface IResume {
   secondaryContactNumber?: number;
   bloodGroup?: BloodGroup;
   secondaryEmail?: string;
+  educationList?:ICandidateEducation[];
+  experienceList?:ICandidateExperience[];
 }
 export class Candidate implements IResume {
   constructor(
@@ -34,7 +38,9 @@ export class Candidate implements IResume {
     public maritalStatus?: MaritalStatus,
     public secondaryContactNumber?: number,
     public bloodGroup?: BloodGroup,
-    public secondaryEmail?: string
+    public secondaryEmail?: string,
+    public educationList?:ICandidateEducation[],
+    public experienceList?:ICandidateExperience[]
   ) {
   }
 }
