@@ -25,4 +25,12 @@ export class CandidateUserService {
   getJobPostById(jobId: number): Observable<HttpResponse<ICompanyJobPostDto>> {
     return this.http.get<ICompanyJobPostDto>('http://localhost:8080/common/candidate/get-job-post-by-id/' + jobId, { observe: 'response' });
   }
+
+  applyJob(id: number | undefined): Observable<HttpResponse<boolean>>  {
+    const params = {
+      candidateUserId: localStorage.getItem('candidateUserId'),
+      jobPostId: id
+    };
+    return this.http.post<boolean>('http://localhost:8080/common/candidate/apply-for-job', params, { observe: 'response' });
+  }
 }

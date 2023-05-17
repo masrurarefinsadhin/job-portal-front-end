@@ -9,6 +9,7 @@ import {SalaryReview} from '../../model/salary-review.model';
 import {Workplace} from '../../model/work-place.model';
 import * as moment from 'moment';
 import {CandidateUserService} from '../candidate-user.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-job-detail',
@@ -36,7 +37,9 @@ export class JobDetailComponent implements OnInit {
 
   ngOnInit(): void {
     console.log(this.candidateUserService.getJobId());
-    this.candidateUserService.getJobPostById(this.candidateUserService.getJobId()).subscribe((res) => {
+    this.candidateUserService.getJobPostById(
+      localStorage.getItem('jobPostId') === null ? 0 : Number(localStorage.getItem('jobPostId'))
+    ).subscribe((res) => {
       this.jobPosting = res.body;
       console.log(this.jobPosting);
     });
@@ -48,4 +51,25 @@ export class JobDetailComponent implements OnInit {
     return salaryType === SalaryType.SHOW;
   }
 
+  applyJob(): void {
+    this.candidateUserService.applyJob(this.jobPosting?.id).subscribe((res) => {
+      console.log(res.body);
+      if (res.body){
+        Swal.fire({
+          title: 'Success',
+          text: 'You have successfully applied for this job',
+          icon: 'success',
+          timer: 1500,
+        })
+      }
+      else if(!res.body){
+        Swal.fire({
+          title: 'Error',
+          text: 'You have already applied for this job',
+          icon: 'error',
+          timer: 1500
+        })
+      }
+    });
+  }
 }

@@ -7,6 +7,8 @@ import {Workplace} from './work-place.model';
 import {GenderType} from './gender.model';
 import {SalaryType} from './salary-type.model';
 import {Moment} from 'moment';
+import {ICompanyEducationQualification} from './company-qualification.model';
+import {ICompanyExperienceDto} from './company-experience.model';
 export interface ICompanyJobPostDto {
   id?: number;
   companyId?: number;
@@ -29,6 +31,8 @@ export interface ICompanyJobPostDto {
   genderType?: GenderType;
   ageMin?: number;
   ageMax?: number;
+  educationQualificationList?: ICompanyEducationQualification[];
+  companyExperienceList?: ICompanyExperienceDto[];
 }
 export class CompanyJobPostDto implements ICompanyJobPostDto {
   constructor(
@@ -52,7 +56,9 @@ export class CompanyJobPostDto implements ICompanyJobPostDto {
     public workplace?: Workplace,
     public genderType?: GenderType,
     public ageMin?: number,
-    public ageMax?: number
+    public ageMax?: number,
+    public educationQualificationList?: ICompanyEducationQualification[],
+    public companyExperienceList?: ICompanyExperienceDto[]
   ) {}
 }
 

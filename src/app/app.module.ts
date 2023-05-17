@@ -14,6 +14,9 @@ import { NavbarCompanyComponent } from './navbar-company/navbar-company.componen
 import { PostJobComponent } from './company-user/post-job/post-job.component';
 import { LoginComponent } from './login/login.component';
 
+
+
+
 @NgModule({
   declarations: [
     AppComponent,

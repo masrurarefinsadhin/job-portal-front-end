@@ -67,7 +67,7 @@ export class CandidateUserComponent implements OnInit {
     ];
     this.candidateUserService.getJobList().subscribe(
       (res) => {
-        console.log(res);
+
         if (res.body !== null){
           this.listOfJobPostings = res.body;
           console.log(this.listOfJobPostings);
@@ -84,11 +84,7 @@ export class CandidateUserComponent implements OnInit {
   }
   showJobDetail(id: number): void {
     this.candidateUserService.setJobId(id);
+    localStorage.setItem('jobPostId', String(id));
     this.router.navigate(['/candidate-user/job-detail']);
-  }
-
-  dayParse(deadline: Moment|undefined): string {
-    if (deadline === undefined) {  return '0'; }
-    return deadline.format('DD');
   }
 }

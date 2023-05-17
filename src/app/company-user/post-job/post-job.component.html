@@ -110,80 +110,60 @@
                 <input type="number" formControlName="companyUserId" class="form-control">
               </div>
             </div>
-
           </div>
         </div>
-      </div>
+        <div class="row">
+          <div class="col-md-6">
+            <div formArrayName="educationQualificationList">
+              <div *ngFor="let education of educationQualificationList.controls; let i = index" class="form-group" [formGroupName]="i">
+                <label for="degreeName">Degree Name</label>
+                <input type="text" class="form-control" id="degreeName" formControlName="degreeName">
 
-      <div class="row ">
-        <div class="form-group ">
-          <div formArrayName="companyExperiences">
-            <div *ngFor="let companyExperienceGroup of companyExperienceList.controls; let i = index">
-              <div [formGroupName]="i">
-                <!-- Nested form fields -->
-                <div class="form-group">
-                  <label for="minYearsOfExperience">Min Years of Experience</label>
-                  <input type="number" id="minYearsOfExperience" formControlName="minYearsOfExperience">
-                </div>
-                <div class="form-group">
-                  <label for="maxYearsOfExperience">Max Years of Experience</label>
-                  <input type="number" id="maxYearsOfExperience" formControlName="maxYearsOfExperience">
-                </div>
-                <div class="form-group">
-                  <label for="areaOfExpertise">Area of Expertise</label>
-                  <input type="text" id="areaOfExpertise" formControlName="areaOfExpertise">
-                </div>
-                <div class="form-group">
-                  <label for="listOfSkill">List of Skill</label>
-                  <input type="text" id="listOfSkill" formControlName="listOfSkill">
-                </div>
+                <!--<label for="degreeType">Degree Type</label>
+                <input type="text" class="form-control" id="degreeType" formControlName="degreeType">-->
 
-                <!-- Remove company experience group button -->
-                <button type="button" (click)="removeCompanyExperience(i)">Remove EXP</button>
-              </div>
-            </div>
-            <!-- Add company experience group button -->
-            <button type="button" (click)="addCompanyExperience()">Add EXP</button>
-          </div>
-        </div>
-        </div>
-      <div class="row ">
-        <div class="form-group ">
-          <div formArrayName="educationQualifications">
-            <div *ngFor="let educationQualificationGroup of educationQualificationList.controls; let i = index">
-              <div [formGroupName]="i">
-                <!-- Nested form fields -->
-                <div class="form-group">
-                  <label for="degreeName">Degree Name</label>
-                  <input type="text" id="degreeName" formControlName="degreeName">
-                </div>
-                <div class="form-group">
-                  <label for="degreeTitle">Degree Title</label>
-                  <input type="text" id="degreeTitle" formControlName="degreeTitle">
-                </div>
-                <div class="form-group">
                   <label for="degreeType">Degree Type</label>
-                  <select id="degreeType" formControlName="degreeType">
-                    <option *ngFor="let option of degreeTypeValues" [value]="option">{{ option }}</option>
+                  <select formControlName="degreeType" class="form-control" id="degreeType" >
+                    <option *ngFor="let degree of degreeTypeValues" [value]="degree">{{ degree }}</option>
                   </select>
-                </div>
-                <div class="form-group">
-                  <label for="majorSubject">Major Subject</label>
-                  <input type="text" id="majorSubject" formControlName="majorSubject">
-                </div>
 
-                <!-- Remove education qualification group button -->
-                <button type="button" (click)="removeEducationQualification(i)">Remove Q</button>
+                <label for="degreeTitle">Degree Title</label>
+                <input type="text" class="form-control" id="degreeTitle" formControlName="degreeTitle">
+
+                <label for="majorSubject">Major Subject</label>
+                <input type="text" class="form-control" id="majorSubject" formControlName="majorSubject">
+
+                <button type="button" (click)="removeEducationQualification(i)">Remove Qualification</button>
               </div>
             </div>
-            <!-- Add education qualification group button -->
-            <button type="button" (click)="addEducationQualification()">Add Q</button>
+            <button type="button" (click)="addEducationQualification()">Add Qualification</button>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <div formArrayName="companyExperienceList">
+              <div *ngFor="let experience of companyExperienceList.controls; let i = index" class="form-group" [formGroupName]="i">
+                <label for="minYearsOfExperience_{{i}}">Minimum Years of Experience</label>
+                <input type="number" class="form-control" id="minYearsOfExperience_{{i}}" formControlName="minYearsOfExperience">
+
+                <label for="maxYearsOfExperience_{{i}}">Maximum Years of Experience</label>
+                <input type="number" class="form-control" id="maxYearsOfExperience_{{i}}" formControlName="maxYearsOfExperience">
+
+                <label for="areaOfExpertise_{{i}}">Area of Expertise</label>
+                <input type="text" class="form-control" id="areaOfExpertise_{{i}}" formControlName="areaOfExpertise">
+
+                <label for="listOfSkill_{{i}}">List of Skills</label>
+                <input type="text" class="form-control" id="listOfSkill_{{i}}" formControlName="listOfSkill">
+
+                <button type="button" (click)="removeCompanyExperience(i)">Remove Experience</button>
+              </div>
+            </div>
+            <button type="button" (click)="addCompanyExperience()">Add Experience</button>
           </div>
 
 
         </div>
       </div>
-
 
         <button type="submit" class="btn btn-primary float-right">Submit</button>
     </form>

@@ -14,6 +14,7 @@ import {BloodGroup} from '../../model/blood-group.model';
 import {JobType} from '../../model/job-type.model';
 import {CompanyUserUserService} from '../company-user.service';
 import {DegreeType} from '../../model/degree-type.model';
+import Swal from 'sweetalert2';
 @Component({
   selector: 'app-post-job',
   templateUrl: './post-job.component.html',
@@ -58,9 +59,9 @@ export class PostJobComponent implements OnInit {
     ageMax: [],
     companyUserId: [],
     educationQualificationList: this.fb.array([
+
       ]),
-    companyExperienceList: this.fb.array([
-    ])
+    companyExperienceList: this.fb.array([])
   });
   ngOnInit(): void {
     this.skillTypeValues = Object.values(SkillType);
@@ -75,7 +76,7 @@ export class PostJobComponent implements OnInit {
     this.nationalityTypeValues = Object.values(NationalityType);
     this.bloodGroupValues = Object.values(BloodGroup);
     this.degreeTypeValues = Object.values(DegreeType);
-
+    this.editForm.get('companyUserId')?.setValue(localStorage.getItem('companyUserId'));
   }
 
   onSubmit(): void {
@@ -83,6 +84,21 @@ export class PostJobComponent implements OnInit {
     this.companyUserUserService.createJobPost(this.editForm.value).subscribe(
       (res) => {
         console.log(res.body);
+        if (res.body) {
+          Swal.fire({
+            icon: 'success',
+            title: 'Your job post has been saved',
+            timer: 1500
+          });
+        }
+          else if(!res.body){
+            Swal.fire({
+              icon: 'error',
+              title: 'Your job post has not been saved',
+              timer: 1500
+            });
+          }
+
       }
     );
 
@@ -91,7 +107,60 @@ export class PostJobComponent implements OnInit {
     });
 
   }
-  createEducationQualification(): FormGroup {
+
+ get educationQualificationList(): FormArray {
+    return this.editForm.get('educationQualificationList') as FormArray;
+  }
+  addEducationQualification(): void {
+    let educationQualification = this.fb.group({
+      id:[null],
+      degreeName: [],
+      degreeType: [],
+      degreeTitle: [],
+      majorSubject: []
+    });
+    this.educationQualificationList.push(educationQualification);
+
+  }
+  removeEducationQualification(i: number): void {
+    this.educationQualificationList.removeAt(i);
+  }
+  get companyExperienceList(): FormArray {
+    return this.editForm.get('companyExperienceList') as FormArray;
+  }
+
+  addCompanyExperience(): void {
+    let companyExperience = this.fb.group({
+      id:[null],
+      minYearsOfExperience: [],
+      maxYearsOfExperience: [],
+      areaOfExpertise: [],
+      listOfSkill: []
+    });
+    this.companyExperienceList.push(companyExperience);
+  }
+  removeCompanyExperience(i: number): void {
+    this.companyExperienceList.removeAt(i);
+  }
+
+
+  /*   addEducationQualification(): void {
+      this.educationQualificationList.push(this.createEducationQualification());
+    }
+    removeEducationQualification(i: number): void {
+      this.educationQualificationList.removeAt(i);
+    }
+
+    get companyExperienceList(): FormArray {
+      return this.editForm.get('companyExperienceList') as FormArray;
+    }
+    addCompanyExperience(): void {
+      this.companyExperienceList.push(this.createCompanyExperience());
+    }
+    removeCompanyExperience(i: number): void {
+      this.companyExperienceList.removeAt(i);
+    }
+    createEducationQualification(): FormGroup {
     return this.fb.group({
       degreeName: [],
       degreeType: [],
@@ -107,24 +176,12 @@ export class PostJobComponent implements OnInit {
       listOfSkill: []
     });
   }
-  get educationQualificationList(): FormArray {
-    return this.editForm.get('educationQualificationList') as FormArray;
-  }
-  addEducationQualification(): void {
-    this.educationQualificationList.push(this.createEducationQualification());
-  }
-  removeEducationQualification(i: number): void {
-    this.educationQualificationList.removeAt(i);
-  }
 
-  get companyExperienceList(): FormArray {
-    return this.editForm.get('companyExperienceList') as FormArray;
-  }
-  addCompanyExperience(): void {
-    this.companyExperienceList.push(this.createCompanyExperience());
-  }
-  removeCompanyExperience(i: number): void {
-    this.companyExperienceList.removeAt(i);
+    */
+
+
+  getCompanyExperienceFormControlName(index: number, controlName: string): string {
+    return `companyExperienceList.${index}.${controlName}`;
   }
 
 }
