@@ -65,7 +65,7 @@
         </div>
       </div>
       <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-12">
           <div formArrayName="educationList">
             <div *ngFor="let education of educationList.controls; let i = index" class="form-group" [formGroupName]="i">
               <label for="degreeName_{{i}}">Degree Name</label>
@@ -92,10 +92,10 @@
               <input type="date" class="form-control" id="endDate_{{i}}" formControlName="endDate">
 
               <label for="maxGrade_{{i}}">Max Grade</label>
-              <input type="text" class="form-control" id="maxGrade_{{i}}" formControlName="maxGrade">
+              <input type="number" class="form-control" id="maxGrade_{{i}}" formControlName="maxGrade">
 
               <label for="achievedGrade_{{i}}">Achieved Grade</label>
-              <input type="text" class="form-control" id="achievedGrade_{{i}}" formControlName="achievedGrade">
+              <input type="number" class="form-control" id="achievedGrade_{{i}}" formControlName="achievedGrade">
 
               <label for="description_{{i}}">Description</label>
               <input type="text" class="form-control" id="description_{{i}}" formControlName="description">

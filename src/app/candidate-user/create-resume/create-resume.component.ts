@@ -8,6 +8,7 @@ import { CandidateUserService } from '../candidate-user.service';
 import Swal from 'sweetalert2';
 import {DegreeType} from '../../model/degree-type.model';
 import {ExperienceType} from '../../model/experience-type.model';
+import {IResume} from '../../model/resume.model';
 @Component({
   selector: 'app-create-resume',
   templateUrl: './create-resume.component.html',
@@ -19,6 +20,7 @@ export class CreateResumeComponent implements OnInit {
   maritalStatusValues: MaritalStatus[] = [];
   bloodGroupValues: BloodGroup[] = [];
   religionTypeValues: ReligionType[] = [];
+  candidateResume:IResume|null = null;
 
   editForm = this.fb.group({
     id: [null], candidateUserId: [],
@@ -49,7 +51,61 @@ export class CreateResumeComponent implements OnInit {
     this.bloodGroupValues = Object.values(BloodGroup);
     this.religionTypeValues = Object.values(ReligionType);
     this.editForm.get('candidateUserId')?.setValue(localStorage.getItem('candidateUserId'));
+    this.populateResume();
   }
+
+  populateResume():void{
+    this.candidateUserService.getResume().subscribe((res)=>{
+      if (res.body !=null){
+        this.candidateResume = res.body;
+        this.editForm.get('id')?.setValue(this.candidateResume.id);
+        this.editForm.get('fatherName')?.setValue(this.candidateResume.fatherName);
+        this.editForm.get('motherName')?.setValue(this.candidateResume.motherName);
+        this.editForm.get('permanentAddress')?.setValue(this.candidateResume.permanentAddress);
+        this.editForm.get('presentAddress')?.setValue(this.candidateResume.presentAddress);
+        this.editForm.get('dateOfBirth')?.setValue(this.candidateResume.dateOfBirth);
+        this.editForm.get('nationalityType')?.setValue(this.candidateResume.nationalityType);
+        this.editForm.get('nationalIdNumber')?.setValue(this.candidateResume.nationalIdNumber);
+        this.editForm.get('religionType')?.setValue(this.candidateResume.religionType);
+        this.editForm.get('maritalStatus')?.setValue(this.candidateResume.maritalStatus);
+        this.editForm.get('secondaryContactNumber')?.setValue(this.candidateResume.secondaryContactNumber);
+        this.editForm.get('bloodGroup')?.setValue(this.candidateResume.bloodGroup);
+        this.editForm.get('secondaryEmail')?.setValue(this.candidateResume.secondaryEmail);
+        this.candidateResume.educationList?.forEach((education)=>{
+          const educationForm = this.fb.group({
+            id: [education.id],
+            degreeName: [education.degreeName],
+            degreeType: [education.degreeType],
+            instituteName: [education.instituteName],
+            instituteAddress: [education.instituteAddress],
+            boardName: [education.boardName],
+            startDate: [education.startDate],
+            endDate: [education.endDate],
+            maxGrade: [education.maxGrade],
+            achievedGrade: [education.achievedGrade],
+            description: [education.description],
+            majorSubject: [education.majorSubject]
+          });
+          this.educationList.push(educationForm);
+        });
+
+        this.candidateResume.experienceList?.forEach((experience)=>{
+          const experienceForm = this.fb.group({
+            id: [experience.id],
+            experienceType: [experience.experienceType],
+            experienceTitle: [experience.experienceTitle],
+            companyName: [experience.companyName],
+            designation: [experience.designation],
+            startDate: [experience.startDate],
+            endDate: [experience.endDate],
+            description: [experience.description],
+          });
+          this.experienceList.push(experienceForm);
+        });
+      }
+    });
+  }
+
   get experienceList(): FormArray {
     return this.editForm.get('experienceList') as FormArray;
   }

@@ -10,6 +10,7 @@ import {SkillType} from '../model/skill-type.model';
 import { ActivatedRoute, Data, ParamMap, Router } from '@angular/router';
 import { CandidateUserService } from './candidate-user.service';
 import * as moment from 'moment';
+import {Moment} from 'moment';
 @Component({
   selector: 'app-candidate-user',
   templateUrl: './candidate-user.component.html',
@@ -84,5 +85,18 @@ export class CandidateUserComponent implements OnInit {
     this.candidateUserService.setJobId(id);
     localStorage.setItem('jobPostId', String(id));
     this.router.navigate(['/candidate-user/job-detail']);
+  }
+
+  convertToDay(deadline: | Moment|undefined):string {
+    if (deadline !== undefined) {
+      return  moment(deadline).format("D");
+    }
+    return "-1";
+  }
+  convertToMonth(deadline: | Moment|undefined):string {
+    if (deadline !== undefined) {
+      return  this.monthNames[Number.parseInt(moment(deadline).format("M"))];    }
+    return "n/a";
+
   }
 }

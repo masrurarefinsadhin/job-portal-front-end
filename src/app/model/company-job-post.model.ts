@@ -59,6 +59,7 @@ export class CompanyJobPostDto implements ICompanyJobPostDto {
     public ageMax?: number,
     public educationQualificationList?: ICompanyEducationQualification[],
     public companyExperienceList?: ICompanyExperienceDto[]
-  ) {}
+  ) {
+  }
 }
 

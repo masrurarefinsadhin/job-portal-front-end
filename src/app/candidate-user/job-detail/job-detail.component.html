@@ -1,31 +1,54 @@
-<app-navbar></app-navbar>
+<app-navbar-company></app-navbar-company>
 <div class="container my-2">
-<div class="card card-margin" >
-  <div class="card-header no-border">
-    <h5 class="card-title">{{jobPosting?.jobTitle}}</h5>
-  </div>
-  <div class="card-body pt-0">
-    <div class="widget-49">
-      <div class="widget-49-title-wrapper">
-        <div class="widget-49-date-primary">
-          <span class="widget-49-date-day">{{jobPosting?.deadline}}</span>
-<!--
-          <span class="widget-49-date-month">{{jobPosting!.deadline? jobPosting!.deadline : ''}}</span>
--->
-        </div>
-        <div class="widget-49-meeting-info">
-          <span class="widget-49-pro-title">{{jobPosting?.context}}</span>
-          <span class="widget-49-meeting-time">{{jobPosting?.deadline}}</span>
-        </div>
-      </div>
-      <ol class="widget-49-meeting-points">
-        <li class="widget-49-meeting-item"><span>Required Field: <b>{{jobPosting?.requiredSkill}}</b></span></li>
-        <li class="widget-49-meeting-item"><span>Responsibility: {{jobPosting?.jobResponsibility}}</span></li>
-        <li *ngIf="salaryTypeNegotiable(jobPosting?.salaryType)" class="widget-49-meeting-item"><span>Salary: Negotiable</span></li>
-        <li *ngIf="salaryTypeShow(jobPosting?.salaryType)" class="widget-49-meeting-item"><span>Salary: {{jobPosting?.minSalary}} - {{jobPosting?.maxSalary}}</span></li>
-        <li class="widget-49-meeting-item"><span>Age: {{jobPosting?.ageMin}} - {{jobPosting?.ageMax}}</span></li>
-      </ol>
+  <div class="card card-margin">
+    <div class="card-header no-border">
+      <h5 class="card-title">{{jobPosting?.jobTitle}}</h5>
     </div>
+    <div class="card-body pt-0">
+      <div class="widget-49">
+        <div class="widget-49-title-wrapper">
+          <div class="widget-49-date-primary">
+            <span class="widget-49-date-day">{{convertToDay(jobPosting?.deadline)}}</span>
+            <span class="widget-49-date-month">{{convertToMonth(jobPosting?.deadline)}}</span>
+          </div>
+          <div class="widget-49-meeting-info">
+            <span class="widget-49-pro-title">{{jobPosting?.context}}</span>
+            <span class="widget-49-meeting-time">{{jobPosting?.deadline}}</span>
+          </div>
+        </div>
+        <ol class="widget-49-meeting-points">
+          <li class="widget-49-meeting-item"><b>Required Skill:</b> {{jobPosting?.requiredSkill}}</li>
+          <li class="widget-49-meeting-item"><b>Job Type:</b> {{jobPosting?.jobType}}</li>
+          <li class="widget-49-meeting-item"><b>Context:</b> {{jobPosting?.context}}</li>
+          <li class="widget-49-meeting-item"><b>Job Responsibility:</b> {{jobPosting?.jobResponsibility}}</li>
+          <li class="widget-49-meeting-item"><b>Job Level:</b> {{jobPosting?.jobLevel}}</li>
+          <li class="widget-49-meeting-item"><b>Job Location:</b> {{jobPosting?.jobLocation}}</li>
+          <li class="widget-49-meeting-item"><b>Lunch Facility:</b> {{jobPosting?.lunchFacilityType}}</li>
+          <li class="widget-49-meeting-item"><b>Salary Review:</b> {{jobPosting?.salaryReview}}</li>
+          <li class="widget-49-meeting-item"><b>Number of Yearly Bonus:</b> {{jobPosting?.numberOfYearlyBonus}}</li>
+          <li class="widget-49-meeting-item"><b>Workplace:</b> {{jobPosting?.workplace}}</li>
+          <li class="widget-49-meeting-item"><b>Gender Type:</b> {{jobPosting?.genderType}}</li>
+        </ol>
+      </div>
+
+      <div *ngIf="jobPosting!.educationQualificationList!.length > 0" class="mt-3">
+      <h6>Education Qualifications:</h6>
+      <ul>
+        <li *ngFor="let education of jobPosting!.educationQualificationList">
+          <span>{{ education!.degreeName }}, {{ education?.degreeType }}, {{ education?.degreeTitle }}, {{ education?.majorSubject }}</span>
+        </li>
+      </ul>
+    </div>
+
+    <div *ngIf="jobPosting!.companyExperienceList!.length > 0" class="mt-3">
+      <h6>Company Experience:</h6>
+      <ul>
+        <li *ngFor="let experience of jobPosting?.companyExperienceList">
+          <span>{{ experience?.minYearsOfExperience }} - {{ experience?.maxYearsOfExperience }} years of experience in {{ experience?.areaOfExpertise }}</span>
+        </li>
+      </ul>
+    </div>
+
     <button class="btn btn-primary btn-block" (click)="applyJob()">Apply</button>
   </div>
 </div>

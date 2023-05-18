@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs';
 import {HttpClient, HttpResponse } from '@angular/common/http';
 import {ICompanyJobPostDto} from '../model/company-job-post.model';
+import {IResume} from '../model/resume.model';
 
 @Injectable({providedIn: 'root'})
 export class CandidateUserService {
@@ -32,5 +33,9 @@ export class CandidateUserService {
       jobPostId: id
     };
     return this.http.post<boolean>('http://localhost:8080/common/candidate/apply-for-job', params, { observe: 'response' });
+  }
+  getResume(): Observable<HttpResponse<IResume>> {
+    const candidateUserId=localStorage.getItem('candidateUserId');
+    return this.http.get<IResume>('http://localhost:8080/common/candidate/find-resume-user/'+candidateUserId, { observe: 'response' });
   }
 }

@@ -10,6 +10,7 @@ export interface ICandidateExperience {
   startDate?: Moment;
   endDate?: Moment;
   description?: string;
+  majorSubject?: string;
 }
 
 export class CandidateExperience implements ICandidateExperience {
@@ -21,6 +22,7 @@ export class CandidateExperience implements ICandidateExperience {
     public designation?: string,
     public startDate?: Moment,
     public endDate?: Moment,
-    public description?: string
+    public description?: string,
+    public majorSubject?: string
   ) {}
 }

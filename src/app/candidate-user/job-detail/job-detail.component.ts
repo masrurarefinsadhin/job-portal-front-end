@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {ICompanyJobPostDto} from '../../model/company-job-post.model';
+import {CompanyJobPostDto, ICompanyJobPostDto} from '../../model/company-job-post.model';
 import {SkillType} from '../../model/skill-type.model';
 import {JobType} from '../../model/job-type.model';
 import {JobLevel} from '../../model/job-level.model';
@@ -10,6 +10,7 @@ import {Workplace} from '../../model/work-place.model';
 import * as moment from 'moment';
 import {CandidateUserService} from '../candidate-user.service';
 import Swal from 'sweetalert2';
+import {Moment} from 'moment';
 
 @Component({
   selector: 'app-job-detail',
@@ -18,20 +19,20 @@ import Swal from 'sweetalert2';
 })
 export class JobDetailComponent implements OnInit {
   selectedJob = -1;
-  jobPosting: ICompanyJobPostDto | null = null ;
+  jobPosting: ICompanyJobPostDto|null= null;
   monthNames: string[] = [
-    'January',
-    'February',
-    'March',
-    'April',
+    'Jan',
+    'Feb',
+    'Mar',
+    'Apr',
     'May',
-    'June',
-    'July',
-    'August',
-    'September',
-    'October',
-    'November',
-    'December'
+    'Jun',
+    'Jul',
+    'Aug',
+    'Sep',
+    'Oct',
+    'Nov',
+    'Dec'
   ];
   constructor(protected candidateUserService: CandidateUserService) { }
 
@@ -40,7 +41,9 @@ export class JobDetailComponent implements OnInit {
     this.candidateUserService.getJobPostById(
       localStorage.getItem('jobPostId') === null ? 0 : Number(localStorage.getItem('jobPostId'))
     ).subscribe((res) => {
-      this.jobPosting = res.body;
+      if (res.body !=null){
+        this.jobPosting = res.body;
+      }
       console.log(this.jobPosting);
     });
   }
@@ -71,5 +74,17 @@ export class JobDetailComponent implements OnInit {
         })
       }
     });
+  }
+  convertToDay(deadline: | Moment|undefined):string {
+    if (deadline !== undefined) {
+      return  moment(deadline).format("D");
+    }
+    return "-1";
+  }
+  convertToMonth(deadline: | Moment|undefined):string {
+    if (deadline !== undefined) {
+      return  this.monthNames[Number.parseInt(moment(deadline).format("M"))];    }
+    return "n/a";
+
   }
 }

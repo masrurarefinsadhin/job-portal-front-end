@@ -13,9 +13,8 @@ import { CompanyUserComponent } from './company-user/company-user.component';
 import { NavbarCompanyComponent } from './navbar-company/navbar-company.component';
 import { PostJobComponent } from './company-user/post-job/post-job.component';
 import { LoginComponent } from './login/login.component';
-
-
-
+import { CandidateStatComponent } from './candidate-user/candidate-stat/candidate-stat.component';
+import { JobPostHistoryComponent } from './company-user/job-post-history/job-post-history.component';
 
 @NgModule({
   declarations: [
@@ -28,13 +27,16 @@ import { LoginComponent } from './login/login.component';
     NavbarCompanyComponent,
     PostJobComponent,
     LoginComponent,
+    CandidateStatComponent,
+    JobPostHistoryComponent,
+
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

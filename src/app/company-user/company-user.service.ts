@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs';
 import {HttpClient, HttpResponse } from '@angular/common/http';
 import {IResume} from '../model/resume.model';
+import {CompanyJobPostDto, ICompanyJobPostDto} from '../model/company-job-post.model';
 
 @Injectable({providedIn: 'root'})
 export class CompanyUserUserService {
@@ -15,5 +16,9 @@ export class CompanyUserUserService {
 
   getResumeList(): Observable<HttpResponse<IResume[]>>  {
     return this.http.get<IResume[]>('http://localhost:8080/common/company/get-resume-list', { observe: 'response' });
+  }
+
+  getJobList(companyUserId: Number ):Observable<HttpResponse<ICompanyJobPostDto[]>> {
+    return this.http.get<ICompanyJobPostDto[]>('http://localhost:8080/common/company/get-posted-job/'+companyUserId, { observe: 'response' });
   }
 }
