@@ -30,6 +30,7 @@ import { JobPostHistoryComponent } from './company-user/job-post-history/job-pos
     CandidateStatComponent,
     JobPostHistoryComponent,
 
+
   ],
   imports: [
     BrowserModule,
@@ -37,6 +38,7 @@ import { JobPostHistoryComponent } from './company-user/job-post-history/job-pos
     ReactiveFormsModule,
     HttpClientModule,
     FormsModule,
+    BrowserAnimationsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
