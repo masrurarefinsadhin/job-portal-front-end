@@ -24,6 +24,7 @@ export class CandidateUserService {
   }
 
   getJobPostById(jobId: number): Observable<HttpResponse<ICompanyJobPostDto>> {
+
     return this.http.get<ICompanyJobPostDto>('http://localhost:8080/common/candidate/get-job-post-by-id/' + jobId, { observe: 'response' });
   }
 
