@@ -27,6 +27,7 @@ export class CandidateUserService {
     return this.http.get<ICompanyJobPostDto>('http://localhost:8080/common/candidate/get-job-post-by-id/' + jobId, { observe: 'response' });
   }
 
+
   applyJob(id: number | undefined): Observable<HttpResponse<boolean>>  {
 
     const params = {
