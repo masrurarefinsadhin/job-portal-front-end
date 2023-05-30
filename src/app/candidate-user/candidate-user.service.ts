@@ -28,6 +28,7 @@ export class CandidateUserService {
   }
 
   applyJob(id: number | undefined): Observable<HttpResponse<boolean>>  {
+
     const params = {
 
 
