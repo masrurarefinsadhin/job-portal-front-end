@@ -10,7 +10,7 @@ export class CompanyUserUserService {
   constructor(protected http: HttpClient) {}
 
   createJobPost(circular: any ): Observable<HttpResponse<boolean>> {
-    console.log(circular);
+    console.log( );
     return this.http.post<boolean>('http://localhost:8080/common/company/create-job-post', circular, { observe: 'response' });
   }
 
