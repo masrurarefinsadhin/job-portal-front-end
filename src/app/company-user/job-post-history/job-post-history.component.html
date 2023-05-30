@@ -1,0 +1,79 @@
+<app-navbar-company></app-navbar-company>
+<div class="container my-2">
+  <div *ngFor="let jobPosting of listOfJobPostings">
+    <!--//-->
+
+    <div class="row">
+      <div class="col">
+        <div class="card card-margin">
+          <div class="card-header no-border">
+            <h5 class="card-title">{{jobPosting.jobTitle}}</h5>
+          </div>
+          <div class="card-body pt-0">
+            <div class="widget-49">
+              <div class="widget-49-title-wrapper">
+                <div class="widget-49-date-primary">
+                  <span class="widget-49-date-day">{{convertToDay(jobPosting.deadline)}}</span>
+                  <span class="widget-49-date-month">{{convertToMonth(jobPosting.deadline)}}</span>
+                </div>
+                <div class="widget-49-meeting-info">
+                  <span class="widget-49-pro-title">{{jobPosting.context}}</span>
+                  <span class="widget-49-meeting-time">{{jobPosting.deadline}}</span>
+                </div>
+              </div>
+              <ol class="widget-49-meeting-points">
+                <li class="widget-49-meeting-item"><span>Required Field: <b>{{jobPosting.requiredSkill}}</b></span></li>
+                <li class="widget-49-meeting-item"><span>Responsibility: {{jobPosting.jobResponsibility}}</span></li>
+                <li *ngIf="salaryTypeNegotiable(jobPosting.salaryType)" class="widget-49-meeting-item"><span>Salary: Negotiable</span></li>
+                <li *ngIf="salaryTypeShow(jobPosting.salaryType)" class="widget-49-meeting-item"><span>Salary: {{jobPosting.minSalary}} - {{jobPosting.maxSalary}}</span></li>
+                <li class="widget-49-meeting-item"><span>Age: {{jobPosting.ageMin}} - {{jobPosting.ageMax}}</span></li>
+              </ol>
+              <div class="widget-49-meeting-action">
+                <a (click)="showJobDetail(jobPosting.id!)" class="btn btn-sm btn-flash-border-primary">View Details</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!--//-->
+  </div>
+
+
+
+  <!--<div class="row">
+    <div class="col">
+      <div class="card card-margin">
+        <div class="card-header no-border">
+          <h5 class="card-title">MOM</h5>
+        </div>
+        <div class="card-body pt-0">
+          <div class="widget-49">
+            <div class="widget-49-title-wrapper">
+              <div class="widget-49-date-primary">
+                <span class="widget-49-date-day">09</span>
+                <span class="widget-49-date-month">apr</span>
+              </div>
+              <div class="widget-49-meeting-info">
+                <span class="widget-49-pro-title">PRO-08235 DeskOpe. Website</span>
+                <span class="widget-49-meeting-time">time</span>
+              </div>
+            </div>
+            <ol class="widget-49-meeting-points">
+              <li class="widget-49-meeting-item"><span>Expand module is removed</span></li>
+              <li class="widget-49-meeting-item"><span>Data migration is in scope</span></li>
+              <li class="widget-49-meeting-item"><span>Session timeout increase to 30 minutes</span></li>
+            </ol>
+            <div class="widget-49-meeting-action">
+              <a href="#" class="btn btn-sm btn-flash-border-primary">View All</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>-->
+
+
+
+</div>

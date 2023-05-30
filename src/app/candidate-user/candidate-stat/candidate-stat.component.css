@@ -1,0 +1,64 @@
+.circular-progress {
+  position: relative;
+  display: inline-block;
+  width: 120px;
+  height: 120px;
+}
+
+.progress-circle {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform: rotate(-90deg);
+}
+
+.progress-circle .progress-left,
+.progress-circle .progress-right {
+  position: absolute;
+  width: 50%;
+  height: 100%;
+  background-color: #f1f1f1;
+}
+
+.progress-circle .progress-left {
+  left: 0;
+}
+
+.progress-circle .progress-right {
+  left: 50%;
+}
+
+.progress-circle.filled-circle .progress-bar {
+  background-color: #57c79f;
+}
+
+.progress-circle.rejected-circle .progress-bar {
+  background-color: #e74c3c;
+}
+
+.progress-circle.pending-circle .progress-bar {
+  background-color: #f39c12;
+}
+
+.progress-circle .progress-bar {
+  top: 0;
+  left: 0;
+  border-radius: 50%;
+}
+
+.progress-value {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 20px;
+  font-weight: bold;
+  color: #333;
+}
+
+.progress-label {
+  text-align: center;
+  margin-top: 10px;
+  font-weight: bold;
+  color: #333;
+}
